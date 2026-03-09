@@ -1,16 +1,30 @@
+---
 manifest:
+  defaults:
+    remote: urob
+    revision: v0.3
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3
       import: app/west.yml
     - name: zmk-helpers
-      remote: urob
-      revision: v0.3
+      path: modules/zmk/helpers
+    - name: zephyr
+      remote: zmkfirmware
+      revision: v3.5.0+zmk-fixes
+      clone-depth: 1
+      import:
+        name-allowlist:
+          - cmsis
+          - hal_nordic
+          - hal_rpi_pico
+          - hal_stm32
+          - lvgl
+          - tinycrypt
   self:
     path: config
